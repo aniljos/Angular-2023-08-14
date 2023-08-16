@@ -1,0 +1,25 @@
+<h3>Data Binding Examples</h3>
+
+<div>
+    Show/Hide: <input type="checkbox" #var1 [ngModel]/>
+    {{var1}} {{var1.checked}}
+</div>
+<br/><br/>
+<div [hidden]="!var1.checked">
+  <div>Name: {{ name }}</div>
+  <div>Expression {{ 5 + 7 }}</div>
+  <div>
+    Count: <input type="number" [value]="count" />
+    <p>{{ count }}</p>
+  </div>
+  <div>
+    <button (click)="inc($event)">Increment</button>
+  </div>
+  <div>
+    Message: <input [(ngModel)]="message" />
+    <p>{{ message }}</p>
+  </div>
+  <div>
+    Count: <input type="number" [value]="count" (input)="update($event)" />
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<h4>List Products</h4>
+
+<div>
+    <input type="search" placeholder="Search Products" [(ngModel)]="searchKey"/>
+</div>
+<p *ngIf="searchKey">
+    Search results for {{searchKey}}
+</p>
+<br/>
+<table>
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- iterate over data and create tr for each product -->
+        <tr *ngFor="let item of data | productFilter : searchKey; index as i; even as even; odd as odd" 
+                                    [ngClass]="{oddCls: odd, evenCls: even}">
+            <td>{{i}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name | uppercase}}</td>
+            <td>{{item.price | currency : 'RM'}}</td>
+            <td>{{item.description}}</td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteProduct(item)">Delete</button>
+                &nbsp;
+                <button class="btn btn-warning" (click)="editProduct(item)">Edit</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="saveProduct()">Save</button>
+            </td>
+            <td>
+                <input type="number" placeholder="ID" [(ngModel)]="nProduct.id"/>
+            </td>
+            <td>
+                <input placeholder="Name" [(ngModel)]="nProduct.name"/>
+            </td>
+            <td>
+                <input type="number" placeholder="Price" [(ngModel)]="nProduct.price"/>
+            </td>
+            <td>
+                <input placeholder="Description" [(ngModel)]="nProduct.description"/>
+            </td>
+        </tr>
+    </tbody>
+</table>

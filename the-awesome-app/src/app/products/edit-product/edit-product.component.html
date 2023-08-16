@@ -1,0 +1,36 @@
+<h4>Edit Product: {{productId}}</h4>
+
+<!-- FormGroup -->
+<form #form #formGroup="ngForm">
+        {{form}}
+        {{formGroup}}
+        <div class="form-group">
+            <label>Name</label>
+            <!-- FormControl( provided we are using ngModel) -->
+            <input name="productName" 
+                    class="form-control" 
+                    placeholder="Name" [(ngModel)]="product.name" required #nameControl="ngModel"/>
+            <div *ngIf="nameControl.invalid" class="alert alert-danger">The field is required</div>
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <!-- FormControl -->
+            <input name="productPrice" type="number"
+                    class="form-control" placeholder="Price" [(ngModel)]="product.price" 
+                    required min="100" #priceControl="ngModel"/>
+            <div *ngIf="priceControl.hasError('required')" class="alert alert-danger">The field is required</div>
+            <div *ngIf="priceControl.hasError('min')" class="alert alert-danger"> The field value should be 100 or above</div>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <!-- FormControl -->
+            <input name="productDesc" class="form-control" placeholder="Description" [(ngModel)]="product.description"/>
+        </div>
+        <br/>
+        <div>
+            <button class="btn btn-success" [disabled]="formGroup.pristine || formGroup.invalid" (click)="save()">Save</button>&nbsp;
+            <button class="btn btn-info" (click)="cancel()">Cancel</button>
+        </div>
+</form>
