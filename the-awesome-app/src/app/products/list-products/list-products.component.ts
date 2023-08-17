@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {Product} from '../../model/Product';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-list-products',
@@ -18,7 +19,7 @@ export class ListProductsComponent {
 
   constructor(private httpClient: HttpClient, private router: Router){
 
-      this.url = "http://localhost:9000/products";
+      this.url = environment.productsUrl;
       httpClient.get<Array<Product>>(this.url)
                     .subscribe({
                       next: (data) => { console.log("next", data); this.data = data},

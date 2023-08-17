@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { UserService } from './services/user-service';
 import { UserServiceImpl } from './services/user-service-imp';
+import { AppSharedModule } from './app-shared/app-shared.module';
 
 //Define the route-view(component) mapping
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes), 
     GadgetsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppSharedModule
   ],
   providers: [{provide: UserService, useClass: UserServiceImpl}],
   bootstrap: [AppComponent]

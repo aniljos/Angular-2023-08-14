@@ -6,10 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { ProductFilterPipe } from './product-filter.pipe';
 import {RouterModule, Routes} from '@angular/router';
 import { EditProductComponent } from './edit-product/edit-product.component';
-import { AuthGuardService } from '../services/auth-guard.service';
+import { AuthGuardFn, AuthGuardService } from '../services/auth-guard.service';
 
 const routes: Routes = [
-  {path: "products", component: ListProductsComponent, canActivate: [AuthGuardService]},
+  {path: "products", component: ListProductsComponent, canActivate: [AuthGuardFn]},
   {path: "products/:id", component: EditProductComponent, canActivate: [AuthGuardService]}
 ]
 
@@ -22,6 +22,6 @@ const routes: Routes = [
   imports: [
     CommonModule, HttpClientModule, FormsModule, RouterModule.forChild(routes)
   ],
-  exports: [ListProductsComponent]
+  exports: []
 })
 export class ProductsModule { }
