@@ -24,7 +24,9 @@ export class ListProductsComponent {
       const accessToken = userService.getAccessToken();
       const headers = {Authorization: `Bearer ${accessToken}`};
 
-      httpClient.get<Array<Product>>(this.url, {headers })
+      //httpClient.get<Array<Product>>(this.url, {headers })
+      //Token interceptor to inject the header
+      httpClient.get<Array<Product>>(this.url, { })
                     .subscribe({
                       next: (data) => { console.log("next", data); this.data = data},
                       error: (error) => {console.log("error", error)},

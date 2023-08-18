@@ -351,6 +351,15 @@ app.put("/secure_customers", function (req, resp) {
         resp.json(null);
     }
 });
+app.get("/checkname/:name", (req, resp) => {
+    const name = req.params.name;
+    const result = { unique: true };
+    if (name.startsWith("x")) {
+        result.unique = false;
+    }
+    resp.status(200);
+    resp.json(result);
+});
 app.listen(PORT, () => {
     console.log(`REST API running on port ${PORT} with process id: ${process.pid}`);
 });

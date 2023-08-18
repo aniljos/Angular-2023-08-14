@@ -1,0 +1,18 @@
+checkUniqueness(): AsyncValidatorFn {
+        return (control: AbstractControl)
+            : Observable<ValidationErrors | null> => {
+
+
+            const value = control.value;
+            // if(value){
+            const url = "http://localhost:9000/checkname/" + value;
+            return this.httpClient
+                .get<{ unique: boolean }>(url)
+                .pipe(
+                    map(result => result.unique ?
+                        null : { uniqueName: "invalid" })
+                );
+            //  }
+            // return null;
+        }
+    }
